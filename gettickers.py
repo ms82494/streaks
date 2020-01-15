@@ -11,7 +11,7 @@ def read_index_table(idx):
 		sys.exit(0)
 	return df.Ticker.tolist()
 
-def get_tickers()
+def get_tickers():
 	indices = ['spx','qqq']
 	tickers = []
 	for ix in indices:
