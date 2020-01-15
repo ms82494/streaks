@@ -1,0 +1,9 @@
+time    winner  loser   stat    streak
+1       A       B       0       1
+2       C       B       0       2
+3       D       B       1       0
+4       E       B       0       1
+5       F       A       0       1
+6       G       A       0       2
+7       H       A       0       3
+8       I       A       1       0
