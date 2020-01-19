@@ -3,6 +3,21 @@ import sys
 
 
 def conv(s):
+    """
+    contains workaround fixes to accommodate incompatibilies between the
+    Tiingo tickers and the tickers provided by Mergent Online
+
+    Parameters
+    ----------
+    s : string
+        input ticker string.
+
+    Returns
+    -------
+    s : string
+        output ticker string.
+
+    """
     s = s.replace(' ', '')
     # on the following 3 tickers tiingo deviates from the norm of
     # letting the share class identifier follow the symbol root
@@ -18,6 +33,20 @@ def conv(s):
 
 
 def read_index_table(idx):
+    """
+    create a list of ticker symvols of index constituents.
+    The index data is in Excel workbooks retrieved from Mergent Online.
+    Parameters
+    ----------
+    idx : string
+        shorthand for index
+
+    Returns
+    -------
+    list
+        contains all tickers in the index.
+
+    """
     fname = './Indices/' + idx + '.xlsx'
     try:
         df = pd.read_excel(fname, headers=0, converters={'Ticker': conv})
@@ -28,6 +57,17 @@ def read_index_table(idx):
 
 
 def get_tickers():
+    """
+    loops through all relevant index workbooks and assembles the combined
+    list of all tickers.
+
+    Returns
+    -------
+    list
+        tilst of all tickers representing constituents of one of the indices
+        considered.
+
+    """
     indices = ['spx', 'qqq', 'russell3000']
     tickers = []
     for ix in indices:
