@@ -6,7 +6,7 @@ I got interested in this phenomenon, when in early 2020 I noticed by coincidence
 
 I start by exporting constituent lists for various stock indexes (S&P 500, Nasdaq 100, and Russell 3000 for a start) into Excel Workbooks (see "Indices" folder).
 
-The source data is downloaded from Tiingo.com, into separate CSV files ("CSVs" folder) for each stock, and then the streaks are calculated from that. Results are captured in "streaks.csv".
+The source data is downloaded from [Tiingo](https://www.tiingo.com), into separate CSV files ("CSVs" folder) for each stock, and then the streaks are calculated from that. Results are captured in "streaks.csv".
 
 
 
