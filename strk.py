@@ -33,6 +33,7 @@ def ticker_streaks(ticker):
     g['ticker'] = ticker
     return g
 
-
-allstreaks = pd.concat([ticker_streaks(s) for s in gt.get_tickers()],
+if __name__ == '__main__':
+    allstreaks = pd.concat([ticker_streaks(s) for s in gt.get_tickers()],
                        ignore_index=True)
+    allstreaks.to_csv('streaks.csv', index=False)
