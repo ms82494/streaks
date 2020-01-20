@@ -6,9 +6,17 @@ I got interested in this phenomenon, when in early 2020 I noticed by coincidence
 
 I start by exporting constituent lists for various stock indexes (S&P 500, Nasdaq 100, and Russell 3000 for a start) into Excel Workbooks (see "[Indices](./Indices)" folder).
 
-The source data is downloaded from [Tiingo](https://www.tiingo.com), into separate *.csv files ("[CSVs](./CSVs)" folder) for each stock, and then the streaks are calculated from that. Results are captured in "streaks.csv".
+The pricing data is downloaded from [Tiingo](https://www.tiingo.com), into separate *.csv files ("[CSVs](./CSVs)" folder) for each stock, and then the streaks are calculated from that. Results are captured in "[streaks.csv](./streaks.csv)".
+
+You are free to clone or download the code to support your own analysis.  To rebuild the stock history files (CSVs folder) you will need to access the Tiingo API. To do so, you need to supply your own authentication token. If you are primarily interested in statistical analysis of the streaks data, it is enough to just download [streaks.csv](./streaks.csv).
 
 
+
+Summary Statistics
+
+The following charts, created using the [streaks](./streaks.ipynb) Jupyter notebook show some basic statistics for the streaks dataset:
+
+![streaks population pyramid] 
 
 
 
