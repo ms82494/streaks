@@ -25,7 +25,7 @@ def binned(x):
         s = '    15+'
     return s
 
-df1['bins'] = df1['length'].apply(binned)
+df1['weeks'] = df1['length'].apply(binned)
 
 table = pd.pivot_table(df1,
                        values=['startdate'],
@@ -35,3 +35,6 @@ table = pd.pivot_table(df1,
                        fill_value=0)
 
 table = table.reindex([binned(x) for x in [1,2,3,4,5,8,10,15]])
+table=table.rename(columns={'startdate': 'streaks',
+                            0.0: 'No',
+                            1.0: 'Yes'})
