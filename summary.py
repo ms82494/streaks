@@ -40,6 +40,8 @@ tbl = tbl.rename(columns={'startdate': 'streaks',
                           0.0: 'No',
                           1.0: 'Yes'})
 
+tbl[('streaks','Yes')] = tbl[('streaks', 'Yes')].map('{:,d}'.format)
+tbl[('streaks','No')] = tbl[('streaks', 'No')].map('{:,d}'.format)
 #from https://stackoverflow.com/questions/35634238/how-to-save-a-pandas-dataframe-table-as-a-png
 ax = plt.subplot(111, frame_on=False) # no visible frame
 ax.xaxis.set_visible(False)  # hide the x axis
