@@ -24,21 +24,21 @@ def binned(x):
         s = '10 - 14'
     else:
         s = '    15+'
-    return s
+    return s 
 
 df1['weeks'] = df1['length'].apply(binned)
 
 tbl = pd.pivot_table(df1,
-                       values=['startdate'],
-                       index = ['weeks'],
-                       columns = ['up'],
-                       aggfunc = 'count',
-                       fill_value=0)
+                     values=['startdate'],
+                     index = ['weeks'],
+                     columns = ['up'],
+                     aggfunc = 'count',
+                     fill_value=0)
 
 tbl = tbl.reindex([binned(x) for x in [1,2,3,4,8,10,15]])
-tbl=tbl.rename(columns={'startdate': 'streaks',
-                            0.0: 'No',
-                            1.0: 'Yes'})
+tbl = tbl.rename(columns={'startdate': 'streaks',
+                          0.0: 'No',
+                          1.0: 'Yes'})
 
 #from https://stackoverflow.com/questions/35634238/how-to-save-a-pandas-dataframe-table-as-a-png
 ax = plt.subplot(111, frame_on=False) # no visible frame
