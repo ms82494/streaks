@@ -16,9 +16,9 @@ Summary Statistics
 
 The following charts, created using the [streaks](./streaks.ipynb) Jupyter notebook show some basic statistics for the streaks dataset.
 
-Surprisingly or not, the frequency distribution of "up" and "down" streaks are **very** similar.
+Surprisingly or not, the frequency distribution of "up" and "down" streaks are **very** similar:
 
-![frequency distribution![table1](/home/matthiasschoener/python/projects/streaks/Images/table1.png)]
+![table1](./Images/table1.png)]
 
 ![streaks population pyramid] 
 
