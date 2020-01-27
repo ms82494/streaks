@@ -12,7 +12,7 @@ You are free to clone or download the code to support your own analysis.  To reb
 
 
 
-Summary Statistics
+### Summary Statistics
 
 The following charts, created using the [streaks](./streaks.ipynb) Jupyter notebook show some basic statistics for the streaks dataset.
 

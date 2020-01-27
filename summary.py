@@ -8,11 +8,20 @@ Created on Wed Jan 22 21:19:33 2020
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from pandas.plotting import table
 import imgkit
+import datetime
+import pytz
+
+# check on recency of CSVs
+timezone = pytz.timezone("America/Los_Angeles")
+with os.scandir() as fhandles:
+    last_created = min([fhandle.stat().st_mtime for fhandle in fhandles])
+asofdt = datetime.datetime.fromtimestamp(last_created, tz=timezone).
+         strftime("%m/%d/%Y")
 
 df1 = pd.read_csv('streaks.csv', header=0)
 df1 = df1[df1['length']!=0]
+
 
 def binned(x):
     if x < 4:
@@ -50,7 +59,9 @@ with open('./HTML/data.html', 'w') as htmlfile:
     htmlfile.close()
     
 # combine css and html 
-fnames = ['./HTML/head.html', './HTML/data.html', './HTML/bottom.html']
+fnames = ['./HTML/head.html',
+          './HTML/data.html',
+          './HTML/bottom.html']
 with open('./HTML/table1.html', 'w') as htmlfile:
     for fname in fnames:
         with open(fname) as infile:

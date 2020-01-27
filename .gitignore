@@ -1,2 +1,5 @@
 config.py
-./CSVs/*.csv
+./CSVs/*
+.spyproject/*
+__pycache__/*
+.ipynb_checkpoints/*
