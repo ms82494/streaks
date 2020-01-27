@@ -22,7 +22,7 @@ async def download_coroutine(session, symbol):
         'resampleFreq': 'weekly',
         'format': 'csv',
         'columns': 'date,adjClose,adjHigh,adjLow,adjVolume'}
-    with async_timeout.timeout(10):
+    with async_timeout.timeout(20):
         filename = symbol.upper() + '.csv'
         filehandle = p / filename
         async with session.get(

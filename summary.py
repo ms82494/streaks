@@ -9,6 +9,7 @@ Created on Wed Jan 22 21:19:33 2020
 import pandas as pd
 import matplotlib.pyplot as plt
 from pandas.plotting import table
+import imgkit
 
 df1 = pd.read_csv('streaks.csv', header=0)
 df1 = df1[df1['length']!=0]
@@ -42,11 +43,21 @@ tbl = tbl.rename(columns={'startdate': 'streaks',
 
 tbl[('streaks','Yes')] = tbl[('streaks', 'Yes')].map('{:,d}'.format)
 tbl[('streaks','No')] = tbl[('streaks', 'No')].map('{:,d}'.format)
-#from https://stackoverflow.com/questions/35634238/how-to-save-a-pandas-dataframe-table-as-a-png
-ax = plt.subplot(111, frame_on=False) # no visible frame
-ax.xaxis.set_visible(False)  # hide the x axis
-ax.yaxis.set_visible(False)  # hide the y axis
 
-table(ax, tbl)  # where tbl is your data frame
+#write dataframe to HTML
+with open('./HTML/data.html', 'w') as htmlfile:
+    htmlfile.write(tbl.to_html())
+    htmlfile.close()
+    
+# combine css and html 
+fnames = ['./HTML/head.html', './HTML/data.html', './HTML/bottom.html']
+with open('./HTML/table1.html', 'w') as htmlfile:
+    for fname in fnames:
+        with open(fname) as infile:
+            htmlfile.write(infile.read())
+            infile.close()
+    htmlfile.close()
 
-plt.savefig('./Images/mytable.png')
+# render html to png
+imgkitoptions = {"format": "png"}
+imgkit.from_file("./HTML/table1.html", './Images/table1.png', options=imgkitoptions)
