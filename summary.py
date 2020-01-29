@@ -5,23 +5,31 @@ Created on Wed Jan 22 21:19:33 2020
 
 @author: matthiasschoener
 """
-import os
+# import os
 import pandas as pd
 # import matplotlib.pyplot as plt
 import imgkit
-import datetime
-import pytz
+#import datetime
+# import pytz
 
 # check on recency of CSVs
-timezone = pytz.timezone("America/Los_Angeles")
-with os.scandir() as fhandles:
-    last_created = min([fhandle.stat().st_mtime for fhandle in fhandles])
-asofdt = datetime.datetime.fromtimestamp(last_created,
-                                         tz=timezone).strftime("%m/%d/%Y")
+# timezone = pytz.timezone("America/Los_Angeles")
+# with os.scandir('./CSVs') as fhandles:
+#     last_created = min([fhandle.stat().st_mtime for fhandle in fhandles])
+# asofdt = datetime.datetime.fromtimestamp(last_created,
+#                                          tz=timezone).strftime("%m/%d/%Y")
 
 df1 = pd.read_csv('streaks.csv', header=0)
 df1['up'] = df1.up.astype(bool)
 df1 = df1[df1['length'] != 0]
+
+# the most recent streak enddate is the "asofdate" for the data
+asofdtlist = df1.enddate.max().split('-')
+asofdt = '/'.join([asofdtlist[i] for i in [2, 1, 0]])
+
+with open('./HTML/asofdate.html', 'w') as f:
+    f.write(f'<p> as of: {asofdt}</p>\n')
+    f.close()
 
 
 def binned(x):
@@ -62,6 +70,7 @@ with open('./HTML/data.html', 'w') as htmlfile:
 # combine css and html
 fnames = ['./HTML/head.html',
           './HTML/data.html',
+          './HTML/asofdate.html',
           './HTML/bottom.html']
 with open('./HTML/table1.html', 'w') as htmlfile:
     for fname in fnames:
