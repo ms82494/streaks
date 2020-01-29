@@ -10,9 +10,7 @@ The pricing data is downloaded from [Tiingo](https://www.tiingo.com), into separ
 
 You are free to clone or download the code to support your own analysis.  To rebuild the stock history files (CSVs folder) you will need to access the Tiingo API. To do so, you need to supply your own authentication token. If you are primarily interested in statistical analysis of the streaks data, it is enough to just download [streaks.csv](./streaks.csv).
 
-
-
-### Summary Statistics
+## Summary Statistics
 
 The following charts, created using the [streaks](./streaks.ipynb) Jupyter notebook show some basic statistics for the streaks dataset.
 
