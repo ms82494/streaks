@@ -1,6 +1,7 @@
 <style type=\"text/css\">
 html, body {
-    /* width: 200px; */
+    width: 100%;
+    max-width: 400px;
 }
 table, p {
     width: 250px;

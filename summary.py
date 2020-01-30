@@ -8,16 +8,8 @@ Created on Wed Jan 22 21:19:33 2020
 # import os
 import pandas as pd
 # import matplotlib.pyplot as plt
+import seaborn as sns
 import imgkit
-#import datetime
-# import pytz
-
-# check on recency of CSVs
-# timezone = pytz.timezone("America/Los_Angeles")
-# with os.scandir('./CSVs') as fhandles:
-#     last_created = min([fhandle.stat().st_mtime for fhandle in fhandles])
-# asofdt = datetime.datetime.fromtimestamp(last_created,
-#                                          tz=timezone).strftime("%m/%d/%Y")
 
 df1 = pd.read_csv('streaks.csv', header=0)
 df1['up'] = df1.up.astype(bool)
@@ -106,9 +98,16 @@ tbl2['up_ends'] = tbl2.up/(tbl2.tot_up - tbl2.cum_up + tbl2.up)
 
 tbl2 = tbl2[tbl2.tot_dn - tbl2.cum_dn >= 25]
 tbl2 = tbl2[tbl2.tot_up - tbl2.cum_up >= 25]
-tbl2 = tbl2.drop(['cum_dn','tot_dn','cum_up','tot_up'], axis=1)
+tbl2 = tbl2.drop(['up', 'down', 'cum_dn', 'tot_dn', 'cum_up', 'tot_up'],
+                 axis=1)
+tbl2.reset_index(inplace=True)
 
-tbl2['up'] = tbl2['up'].map('{:,d}'.format)
-tbl2['down'] = tbl2['down'].map('{:,d}'.format)
-tbl2['dn_ends'] = tbl2['dn_ends'].map('{:,.1%}'.format)
-tbl2['up_ends'] = tbl2['up_ends'].map('{:,.1%}'.format)
+df = tbl2.melt(id_vars='length',
+               var_name='type',
+               value_vars=['dn_ends', 'up_ends'],
+               value_name='fail ratio')
+
+df['type'] = df['type'].apply(lambda x: 'Down' if x == 'dn_ends' else 'Up')
+sns_plot = sns.lineplot(data=df, x='length', y='fail ratio', hue='type')
+fig = sns_plot.get_figure()
+fig.savefig('./Images/figure1.png')
