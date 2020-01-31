@@ -30,11 +30,11 @@ As of 1/28/2020, there are just over 1.4MM streaks captured in the data, evenly 
 
 The following charts, created using the [streaks](./streaks.ipynb) Jupyter notebook show some basic statistics for the streaks dataset.
 
-Surprisingly or not, the frequency distribution of "up" and "down" streaks are **very** similar:
+At first glance, the frequency distribution of "up" and "down" streaks does appear quite similar:
 
-![table1](./Images/table1.png)]
+![table1](./Images/table1.png)
 
-![streaks population pyramid] 
+That said, the data fails a [Wald-Wolfowitz runs test](./Wald-Wolfowitz test.ipynb) at confidence bound `1 - alpha/2` for any reasonable value of `alpha`.  The streaks are, in other words, **not** randomly distributed.
 
 
 
