@@ -95,6 +95,7 @@ tbl2['dn_ends'] = tbl2.down/(tbl2.tot_dn - tbl2.cum_dn + tbl2.down)
 tbl2['cum_up'] = tbl2.up.cumsum()
 tbl2['tot_up'] = tbl2.cum_up.max()
 tbl2['up_ends'] = tbl2.up/(tbl2.tot_up - tbl2.cum_up + tbl2.up)
+tbl3 = tbl2
 
 tbl2 = tbl2[tbl2.tot_dn - tbl2.cum_dn >= 25]
 tbl2 = tbl2[tbl2.tot_up - tbl2.cum_up >= 25]
