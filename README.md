@@ -34,7 +34,7 @@ At first glance, the frequency distribution of "up" and "down" streaks does appe
 
 ![table1](./Images/table1.png)
 
-That said, the data fails a [Wald-Wolfowitz runs test](./Wald-Wolfowitz test.ipynb) at confidence bound `1 - alpha/2` for any reasonable value of `alpha`.  The streaks are, in other words, **not** randomly distributed.
+That said, the data fails a [Wald-Wolfowitz runs test](./Wald-Wolfowitz.ipynb) at confidence bound `1 - alpha/2` for any reasonable value of `alpha`.  The streaks are, in other words, **not** randomly distributed.
 
 
 
