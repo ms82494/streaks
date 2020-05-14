@@ -31,6 +31,7 @@ def ticker_streaks(ticker):
     g.reset_index(inplace=True)
     g.drop('strkno', axis=1, inplace=True)
     g['ticker'] = ticker
+    g = g[g.length !=0]
     return g
 
 if __name__ == '__main__':

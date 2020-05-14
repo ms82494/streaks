@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import sys
 
 
@@ -18,15 +19,26 @@ def conv(s):
         output ticker string.
 
     """
-    s = s.replace(' ', '')
+    s = s.strip()
+    if s.find(' ') > 0:
+        if s.find(' ') > 3:
+            s = s.replace(' ', '')
+        else:
+            s = s.replace(' ', '-')
     # on the following 3 tickers tiingo deviates from the norm of
     # letting the share class identifier follow the symbol root
     # (e.g. Alphabet Class L => 'GOOGL'), instead inserting a '-' between
-    # the root and the class identifier.
-    if s in ['BRKA', 'BFB', 'LGFA']:
-        s = s[:-1] + '-' + s[-1]
+    # the root and the class identifr.
+    # if s in ['BRKA', 'BFB', 'LGFA']:
+    #     s = s[:-1] + '-' + s[-1]
     # For the purpose of this exercise I don't want preferred shares (which)
     # should not show up anyway.
+    if s == 'GOOG':
+        s = 'GOOGL'
+    if s == 'DXPBN':
+        s = 'DX'
+    if s == 'NSA-PRA':
+        s = 'NSA'
     if s in ['PSBPRZ']:
         s = s[:3]
     return s
@@ -50,6 +62,7 @@ def read_index_table(idx):
     fname = './Indices/' + idx + '.xlsx'
     try:
         df = pd.read_excel(fname, headers=0, converters={'Ticker': conv})
+        df = df[df.Ticker.isna() == False]
     except Exception:
         print(f'could not open file {fname}')
         sys.exit(0)

@@ -47,7 +47,8 @@ async def main():
                 tasks = [download_coroutine(session, symbol)
                          for symbol in chunk]
                 await asyncio.gather(*tasks)
-            except TimeoutError:
+            except asyncio.TimeoutError:
+                pickle.dump(chunk, open('missed_chunks.pkl', 'wb'))
                 print(f'tickers in progress: {chunk}')
 if __name__ == '__main__':
     asyncio.run(main())
